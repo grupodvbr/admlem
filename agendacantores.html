@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Agenda de Músicos</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Great+Vibes&family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <style>
@@ -13,7 +13,13 @@
       --line:rgba(255,255,255,.18); --verde-claro:rgba(0,255,128,0.15);
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:'Poppins',sans-serif;background:#0b0b15;color:var(--texto);}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#0b0b15;
+  color:var(--texto);
+  padding-top:10px;
+}
     /* Estrelas */
     #stars,#stars-front{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;pointer-events:none;z-index:0;}
     .star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.9;
@@ -31,8 +37,26 @@
     .badge{border:1px solid var(--line);border-radius:12px;padding:8px 12px;background:#2b2b3f;color:#fff;opacity:.9}
     .head-right{display:flex;align-items:center;gap:10px}
     /* Conteúdo */
-    .content{position:absolute;top:90px;bottom:0;left:0;right:0;overflow-y:auto;
-      padding:0 16px 80px;display:flex;flex-direction:column;align-items:center;z-index:50;}
+.content{
+  position:fixed;
+  top:80px; /* altura do header */
+  bottom:0;
+  left:0;
+  right:0;
+
+  padding:20px 16px 120px;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  -ms-overflow-style:none;
+  scrollbar-width:none;
+}
+
+.content::-webkit-scrollbar{
+  display:none;
+}
     .lista{width:100%;max-width:980px;display:flex;flex-direction:column;gap:18px;}
     .grupo{display:grid;grid-template-columns:92px 1fr;gap:14px;}
     .dia{display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -52,8 +76,27 @@
       border:none;border-radius:50%;background:var(--amarelo);color:#000;
       font-size:32px;font-weight:900;cursor:pointer;z-index:200;box-shadow:0 6px 16px rgba(0,0,0,.45);}
     /* Modais e loader */
-    #modal,#formModal,#loginModal,#loader{position:fixed;inset:0;display:none;align-items:center;
-      justify-content:center;background:rgba(0,0,0,.6);z-index:3000;}
+#modal,#loginModal,#loader{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.6);
+  z-index:3000;
+}
+
+#formModal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:flex-start;
+  justify-content:center;
+  padding-top:80px;
+  overflow:auto;
+  background:rgba(0,0,0,.6);
+  z-index:3000;
+}
     .modal-box{width:min(92vw,460px);background:#101326;color:#fff;border-radius:16px;padding:18px;}
     .modal-box h3{margin:0 0 10px;font-size:18px;display:flex;justify-content:space-between;align-items:center;}
     .kv{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.15);}
@@ -70,11 +113,21 @@
     .spinner{width:60px;height:60px;border:6px solid rgba(255,255,255,0.2);
       border-top:6px solid var(--amarelo);border-radius:50%;animation:spin 1s linear infinite;}
     @keyframes spin{100%{transform:rotate(360deg);}}
-    @media (max-width:560px){
-      .title{font-size:28px}
-      header.titulo{padding:14px 12px}
-      .grupo{grid-template-columns:72px 1fr}
-    }
+@media (max-width:560px){
+  .title{font-size:28px}
+  header.titulo{padding:14px 12px}
+  .grupo{grid-template-columns:72px 1fr}
+
+  .lista{
+    margin-top:8px;
+  }
+
+  .grupo:first-child{
+    margin-top:6px;
+  }
+}
+
+  
   </style>
 </head>
 <body>
@@ -118,7 +171,7 @@
     <label>Cantor</label><input type="text" id="f_cantor"/>
     <label>Horário</label><input type="time" id="f_hora"/>
     <label>Valor</label><input type="text" id="f_valor" inputmode="decimal" placeholder="0,00"/>
-    <button class="btn" onclick="salvarRegistro()">Salvar</button>
+<button type="button" class="btn" onclick="salvarRegistro()">Salvar</button>
     <button id="deleteBtn" class="btn delete" style="display:none" onclick="deleteRegistro()">Excluir</button>
     <button class="btn" style="background:#ccc" onclick="fecharForm()">Cancelar</button>
   </div></div>
@@ -406,5 +459,10 @@ await sb
     // Inicialização
     verificarLogin();
   </script>
+  <script>
+document.addEventListener('gesturestart', function (e) {
+  e.preventDefault();
+});
+</script>
 </body>
 </html>
