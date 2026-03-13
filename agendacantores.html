@@ -8,20 +8,14 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <style>
 :root{
---amarelo:#ffd700;
---bg:#07070d;
---overlay:rgba(10,0,30,.75);
---texto:#ffffff;
---muted:#b8b8c7;
-
---card:rgba(255,255,255,.04);
---card-hover:rgba(255,215,0,.08);
-
---line:rgba(255,255,255,.12);
---verde-claro:rgba(0,255,128,.15);
-
---radius:16px;
---shadow:0 10px 30px rgba(0,0,0,.35);
+--gold:#ffd700;
+--bg:#0a0a12;
+--card:#14141f;
+--border:rgba(255,255,255,.08);
+--text:#ffffff;
+--muted:#9ca3af;
+--radius:14px;
+--shadow:0 8px 20px rgba(0,0,0,.35);
 }
 
 *{
@@ -30,18 +24,20 @@ margin:0;
 padding:0;
 }
 
-body{
-font-family:'Poppins',sans-serif;
-background:linear-gradient(180deg,#050507,#0c0c18);
-color:var(--texto);
-min-height:100vh;
-overflow-x:hidden;
+html,body{
+height:100%;
 }
 
+body{
+font-family:'Poppins',sans-serif;
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+display:flex;
+flex-direction:column;
+}
 
-/* =========================
-ESTRELAS
-========================= */
+/* BACKGROUND ESTRELAS */
 
 #stars,#stars-front{
 position:fixed;
@@ -54,14 +50,9 @@ z-index:0;
 position:absolute;
 width:2px;
 height:2px;
-background:#fff;
+background:white;
 border-radius:50%;
-opacity:.9;
-
-box-shadow:
-0 0 6px #fff,
-0 0 12px #ffd700;
-
+opacity:.8;
 animation:fall linear infinite;
 }
 
@@ -70,10 +61,7 @@ animation:fall linear infinite;
 100%{transform:translateY(110vh)}
 }
 
-
-/* =========================
-HEADER
-========================= */
+/* HEADER */
 
 header.titulo{
 
@@ -85,92 +73,68 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 
-padding:18px 20px;
+padding:14px 16px;
 
-backdrop-filter:blur(10px);
+background:rgba(10,10,20,.85);
+backdrop-filter:blur(6px);
 
-background:linear-gradient(
-180deg,
-rgba(0,0,0,.8),
-rgba(0,0,0,.55)
-);
-
-border-bottom:1px solid var(--line);
+border-bottom:1px solid var(--border);
 }
 
 .brand{
 display:flex;
 flex-direction:column;
-gap:2px;
 }
 
 .title{
 font-family:'Bebas Neue',sans-serif;
-font-size:36px;
-letter-spacing:1px;
-color:var(--amarelo);
+font-size:30px;
+color:var(--gold);
 }
 
 .subtitle{
-font-family:'Great Vibes',cursive;
+font-family:'Great Vibes';
 font-size:18px;
-opacity:.95;
 }
 
 .head-right{
 display:flex;
 align-items:center;
-gap:10px;
+gap:8px;
 }
 
 .badge{
-
-font-size:13px;
-
-background:rgba(255,255,255,.06);
-border:1px solid var(--line);
-
-padding:8px 12px;
-border-radius:12px;
-
-color:#fff;
+font-size:12px;
+background:#1f1f2e;
+padding:6px 10px;
+border-radius:10px;
 }
 
 .btn{
-
-background:var(--amarelo);
+background:var(--gold);
 border:none;
-
-padding:10px 14px;
-
-border-radius:12px;
-
-font-weight:700;
-
+padding:8px 12px;
+border-radius:10px;
+font-weight:600;
 cursor:pointer;
-
-box-shadow:0 4px 10px rgba(0,0,0,.3);
-
-transition:.2s;
 }
 
-.btn:hover{
-transform:translateY(-2px);
-}
-
-
-/* =========================
-CONTEUDO
-========================= */
+/* AREA PRINCIPAL */
 
 .content{
 
+flex:1;
+
+display:flex;
+justify-content:center;
+
+padding:16px;
+}
+
+.lista{
+
 width:100%;
-max-width:1000px;
-
-margin:auto;
-
-padding:24px 16px 120px;
+max-width:850px;
 
 display:flex;
 flex-direction:column;
@@ -178,174 +142,105 @@ flex-direction:column;
 gap:22px;
 }
 
-
-/* =========================
-LISTA
-========================= */
-
-.lista{
-display:flex;
-flex-direction:column;
-gap:24px;
-width:100%;
-}
-
-
-/* =========================
-GRUPO DIA
-========================= */
+/* DIA */
 
 .grupo{
-
 display:grid;
-grid-template-columns:70px 1fr;
-gap:16px;
+grid-template-columns:60px 1fr;
+gap:12px;
 }
 
 .dia{
+
+font-family:'Bebas Neue';
+font-size:28px;
 
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
-
-font-family:'Bebas Neue';
-
-font-size:32px;
-
-line-height:1;
 }
 
 .dia small{
-
 font-size:11px;
-
-letter-spacing:1px;
-
-color:var(--amarelo);
-
-font-weight:700;
-
-margin-top:4px;
+color:var(--gold);
 }
 
-
-/* =========================
-LISTA ITENS
-========================= */
+/* EVENTOS */
 
 .itens{
-
-border-left:3px solid var(--amarelo);
-
-padding-left:14px;
-
 display:flex;
 flex-direction:column;
-gap:12px;
+gap:10px;
+border-left:2px solid var(--gold);
+padding-left:12px;
 }
 
-
-/* =========================
-CARD EVENTO
-========================= */
-
 .linha{
+
+background:var(--card);
+
+padding:14px;
+
+border-radius:var(--radius);
 
 display:flex;
 justify-content:space-between;
 align-items:center;
 
-padding:16px 18px;
-
-border-radius:var(--radius);
-
-background:var(--card);
-
-border:1px solid var(--line);
-
-cursor:pointer;
-
-transition:.25s;
+border:1px solid var(--border);
 
 box-shadow:var(--shadow);
 
-font-size:16px;
+cursor:pointer;
+
+transition:.2s;
 }
 
 .linha:hover{
-
-background:var(--card-hover);
-
-transform:translateY(-2px);
+background:#1d1d2a;
 }
 
 .texto{
-
 font-weight:600;
-
-white-space:nowrap;
 overflow:hidden;
 text-overflow:ellipsis;
+white-space:nowrap;
 }
 
 .hora{
-
-font-size:14px;
-font-weight:700;
-
+font-size:13px;
 color:var(--muted);
 }
 
-.passado{
-
-background:var(--verde-claro)!important;
-
-border-color:rgba(0,255,128,.4)!important;
-}
-
-
-/* =========================
-BOTAO +
-========================= */
+/* BOTAO + */
 
 #addBtn{
 
 position:fixed;
 
-bottom:25px;
-right:22px;
+bottom:20px;
+right:20px;
 
-width:60px;
-height:60px;
+width:56px;
+height:56px;
 
 border-radius:50%;
 
 border:none;
 
-background:var(--amarelo);
+background:var(--gold);
 
-font-size:34px;
-
-font-weight:900;
+font-size:30px;
 
 cursor:pointer;
 
+box-shadow:0 6px 18px rgba(0,0,0,.4);
+
 z-index:200;
-
-box-shadow:0 10px 25px rgba(0,0,0,.4);
-
-transition:.2s;
 }
 
-#addBtn:hover{
-transform:scale(1.08);
-}
-
-
-/* =========================
-MODAIS
-========================= */
+/* MODAIS */
 
 #modal,
 #loginModal,
@@ -362,34 +257,26 @@ justify-content:center;
 
 background:rgba(0,0,0,.65);
 
-z-index:3000;
+z-index:2000;
 }
 
 .modal-box{
 
-width:min(92vw,460px);
+background:#111324;
+
+width:min(92vw,420px);
+
+border-radius:16px;
+
+padding:20px;
 
 max-height:90vh;
 
 overflow:auto;
-
-background:#111324;
-
-border-radius:18px;
-
-padding:22px;
-
-box-shadow:0 20px 40px rgba(0,0,0,.45);
 }
 
 .modal-box h3{
-
-display:flex;
-justify-content:space-between;
-
-margin-bottom:14px;
-
-font-size:18px;
+margin-bottom:12px;
 }
 
 .kv{
@@ -399,111 +286,84 @@ justify-content:space-between;
 
 padding:10px 0;
 
-border-bottom:1px dashed rgba(255,255,255,.15);
+border-bottom:1px dashed rgba(255,255,255,.1);
 }
 
 .kv:last-child{
 border:none;
 }
 
-.kv b{
-color:var(--amarelo);
-}
-
-
-/* =========================
-FORM
-========================= */
+/* FORM */
 
 #formModal .modal-box{
-background:#ffffff;
-color:#000;
-}
-
-#formModal label{
-
-display:block;
-
-margin-top:12px;
-
-font-size:14px;
-
-font-weight:700;
+background:white;
+color:black;
 }
 
 #formModal input{
 
 width:100%;
 
-padding:12px;
+padding:10px;
 
-border-radius:10px;
+border-radius:8px;
 
 border:1px solid #ccc;
 
 margin-top:6px;
+}
 
-font-size:16px;
+#formModal label{
+margin-top:10px;
+display:block;
+font-weight:600;
 }
 
 #formModal .btn{
-margin-top:14px;
+margin-top:12px;
 width:100%;
 }
 
 #formModal .btn.delete{
 background:#dc2626;
-color:#fff;
+color:white;
 }
 
-
-/* =========================
-LOGIN
-========================= */
-
-#loginModal{
-background:rgba(0,0,0,.85);
-}
+/* LOGIN */
 
 #loginBox{
 
-width:320px;
+background:white;
 
-background:#fff;
+width:300px;
 
-color:#000;
-
-padding:22px;
+padding:20px;
 
 border-radius:14px;
 
 display:flex;
 flex-direction:column;
 gap:10px;
+
+color:black;
 }
 
 #loginBox input{
-
-padding:12px;
-
-border-radius:10px;
-
+padding:10px;
+border-radius:8px;
 border:1px solid #ccc;
 }
 
-
-/* =========================
-LOADER
-========================= */
+/* LOADER */
 
 .spinner{
 
-width:60px;
-height:60px;
+width:50px;
+height:50px;
 
 border:6px solid rgba(255,255,255,.2);
 
-border-top:6px solid var(--amarelo);
+border-top:6px solid var(--gold);
 
 border-radius:50%;
 
@@ -514,42 +374,24 @@ animation:spin 1s linear infinite;
 100%{transform:rotate(360deg)}
 }
 
-
-/* =========================
-MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:600px){
 
 .title{
-font-size:28px;
-}
-
-.subtitle{
-font-size:16px;
-}
-
-header.titulo{
-padding:14px;
+font-size:26px;
 }
 
 .grupo{
-grid-template-columns:60px 1fr;
+grid-template-columns:50px 1fr;
 }
 
 .linha{
-padding:14px;
-font-size:15px;
-}
-
-#addBtn{
-width:56px;
-height:56px;
-font-size:30px;
+padding:12px;
+font-size:14px;
 }
 
 }
-
   
   </style>
 </head>
